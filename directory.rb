@@ -37,9 +37,11 @@ end
 
 def display(students)
 	students.each_with_index do |student, i|
-		print "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)\n"
-	end
-end 
+		if student[:name].start_with?("A")
+			print "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)\n"
+		end
+	end 
+end
 
 def print_footer(names)
 	print "Overall, we have #{names.length} great students\n"
