@@ -37,7 +37,7 @@ end
 
 def display(students)
 	students.each_with_index do |student, i|
-		if student[:name].start_with?("A")
+		if student[:name].start_with?("A") and student[:name].length < 12
 			print "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)\n"
 		end
 	end 
