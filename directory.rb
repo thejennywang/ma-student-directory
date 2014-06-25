@@ -31,35 +31,52 @@ students = [
 =end
 
 def print_header
-	print "The students of my cohort at Makers Academy\n"
-	print "-----------------\n"
+	print "The students of my cohort at Makers Academy\n".center(80)
+	print "-----------------\n".center(80)
 end
 
 def display(students)
-	students.each_with_index do |student, i|
-		if student[:name].start_with?("A") and student[:name].length < 12
-			print "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)\n"
-		end
-	end 
+	i = 0
+	while i < students.length
+		print "#{students[i][:name]}, age #{students[i][:age]}, #{students[i][:cohort]}\n".center(80)
+		i+=1
+	end
 end
 
 def print_footer(names)
-	print "Overall, we have #{names.length} great students\n"
+	print "Overall, we have #{names.length} great students\n".center(80)
 end
 
 def input_students
-	print "Please enter the names of the students\n"
-	print "To finish, just hit return twice\n"
+	print "To finish, hit return twice\n"
+	print "Please enter your name\n"
 	#create an empty array
 	students = []
 	#get the first name
 	name = gets.chomp
 	# while the name is not empty, repeat this code
 	while !name.empty? do
-		#add the studen hash to the array
-		students << {:name => name, :cohort => "June 2014"}
+		print "Please enter your age\n"
+		age = gets.chomp
+	
+	if age.empty?
+		age = "-"
+	elsif age !=~ /\d/
+		age = "-"
+	end	
+
+	print "Please enter your cohort\n"
+	cohort = gets.chomp
+
+	if cohort.empty?
+		cohort = "-"
+	end	
+
+		#add the student hash to the array
+		students << {:name => name, :age => age, :cohort => cohort}
 		print "Now we have #{students.length} students\n"
 		#gets another name from the user
+		print "Please enter your name\n"
 		name = gets.chomp
 	end
 	#return the array of students
