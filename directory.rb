@@ -14,7 +14,11 @@ def display(students)
 end
 
 def print_footer(names)
-	print "Overall, we have #{names.length} great students\n"
+	if names.length > 1
+		print "Overall, we have #{names.length} great students\n" 
+		elsif  
+			print "Now we have #{names.length} student\n"
+		end
 end
 
 def input_students
@@ -49,7 +53,11 @@ def input_students
 
 		#add the student hash to the array
 		students << {:name => name, :age => age, :cohort => cohort}
+		if students.length > 1
 		print "Now we have #{students.length} students\n" 
+		elsif  
+			print "Now we have #{students.length} student\n"
+		end
 		#gets another name from the user
 		print "Please enter your name OR press return to exit\n"
 		name = gets.chomp
