@@ -48,7 +48,6 @@ def print_footer(names)
 end
 
 def input_students
-	print "To finish, hit return twice\n"
 	print "Please enter your name\n"
 	#create an empty array
 	students = []
@@ -57,13 +56,11 @@ def input_students
 	# while the name is not empty, repeat this code
 	while !name.empty? do
 		print "Please enter your age\n"
-		
-
-	age = gets.chomp
-	while age.to_i == 0
-	print "Please fill in a numeric value"
-	age = gets.chomp
-	end	
+		age = gets.chomp
+		while ( age.to_i == 0 || age.to_i < 0 )
+			puts "Please enter a numeric value for your age"
+			age = gets.chomp
+		end	
 
 	print "Please enter your cohort\n"
 	cohort = gets.chomp
@@ -72,13 +69,21 @@ def input_students
 		cohort = "-"
 	end	
 
+	puts "Your input is #{name}, #{age}, #{cohort}, are you sure?"
+	confirmation = gets.chomp
+	if confirmation == "y"
+
 		#add the student hash to the array
 		students << {:name => name, :age => age, :cohort => cohort}
-		print "Now we have #{students.length} students\n"
+		print "Now we have #{students.length} students\n" 
 		#gets another name from the user
-		print "Please enter your name\n"
+		print "Please enter your name OR press return to exit\n"
+		name = gets.chomp
+	elsif confirmation == "n"
+		puts "Please re-enter your name"
 		name = gets.chomp
 	end
+end
 	#return the array of students
 	students
 end
