@@ -57,12 +57,12 @@ def input_students
 	# while the name is not empty, repeat this code
 	while !name.empty? do
 		print "Please enter your age\n"
-		age = gets.chomp
-	
-	if age.empty?
-		age = "-"
-	elsif age !=~ /\d/
-		age = "-"
+		
+
+	age = gets.chomp
+	while age.to_i == 0
+	print "Please fill in a numeric value"
+	age = gets.chomp
 	end	
 
 	print "Please enter your cohort\n"
