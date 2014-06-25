@@ -31,20 +31,26 @@ students = [
 =end
 
 def print_header
-	print "The students of my cohort at Makers Academy\n".center(80)
-	print "-----------------\n".center(80)
+	print "The students of my cohort at Makers Academy\n"
+	print "-----------------\n"
 end
 
 def display(students)
-	i = 0
-	while i < students.length
-		print "#{students[i][:name]}, age #{students[i][:age]}, #{students[i][:cohort]}\n".center(80)
-		i+=1
+	students.map{|student| student[:cohort]}.uniq.each do |cohort|
+		puts "The students for the #{cohort.to_s} cohorts are:"
+		students.each do |student|
+			puts "#{student[:name]}, age #{student[:age]}, #{student[:cohort]}\n".center(80) if student[:cohort] == cohort
 	end
+end
+	# i = 0
+	# while i < students.length
+	# 	print "#{students[i][:name]}, age #{students[i][:age]}, #{students[i][:cohort]}\n".center(80)
+	# 	i+=1
+	# end
 end
 
 def print_footer(names)
-	print "Overall, we have #{names.length} great students\n".center(80)
+	print "Overall, we have #{names.length} great students\n"
 end
 
 def input_students
@@ -62,12 +68,16 @@ def input_students
 			age = gets.chomp
 		end	
 
-	print "Please enter your cohort\n"
+	print "Please enter a number between 1-12 for the month of your cohort (1-January, etc)\n"
+	# cohortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 	cohort = gets.chomp
+	# cohort = cohortMonth[cohort.to_i - 1]
 
 	if cohort.empty?
-		cohort = "-"
+		cohort = "6"
 	end	
+
+	cohort = (Time.new(Time.now.year, cohort.to_i).strftime "%B").to_sym
 
 	puts "Your input is #{name}, #{age}, #{cohort}, are you sure?"
 	confirmation = gets.chomp
