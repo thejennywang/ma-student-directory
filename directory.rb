@@ -21,19 +21,24 @@ def print_footer
   end
 end
 
-def input_students
-	puts "Please enter your name"
-	# get the first name
-	name = gets.chomp
-	# while the name is not empty, repeat this code
-	while !name.empty? do
-		puts "Please enter your age"
-		age = gets.chomp
-		while ( age.to_i == 0 || age.to_i < 0 )
-			puts "Please enter a numeric value for your age"
-			age = gets.chomp
-		end	
+def input_name
+		puts "Please enter your name"
+		# get the first name
+		name = gets.chomp
+end
 
+def input_age
+	puts "Please enter your age"
+	age = gets.chomp
+	while ( age.to_i == 0 || age.to_i < 0 )
+		puts "Please enter a numeric value for your age"
+		age = gets.chomp
+	end
+
+	age
+end
+
+def input_cohort
 	puts "Please enter a number between 1-12 for the month of your cohort (1-January, etc)"
 	# get cohort month, if nothing entered default to 6 (june)
 	cohort = gets.chomp
@@ -42,26 +47,31 @@ def input_students
 	end
 
 	cohort = (Time.new(Time.now.year, cohort.to_i).strftime "%B").to_sym
+end
 
+def check_input(name, age, cohort)
 	puts "Your input is #{name}, #{age}, #{cohort}. Are you sure? (y/n)"
 	confirmation = gets.chomp
+	
 	if confirmation == "y"
-
 		#add the student hash to the array
 		@students << {:name => name, :age => age, :cohort => cohort}
-		
-		
 		puts "Now we have #{@students.length} student#{@students.length > 1 ? "s" : ""}" 
-		
-		#gets another name from the user
-		puts "Please enter another name OR press return for Menu"
-		name = gets.chomp
 	elsif confirmation == "n"
 		puts "Please re-enter your name"
 		name = gets.chomp
 	end
 end
-	#return the array of students
+
+def input_students
+	name = input_name
+	while !name.empty? do
+		age = input_age
+		cohort = input_cohort
+		check_input(name, age, cohort)
+		puts "Please enter another name OR press return for Menu"
+		name = gets.chomp
+	end
 	@students
 end
 
