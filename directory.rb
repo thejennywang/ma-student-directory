@@ -34,10 +34,8 @@ def input_students
 			age = gets.chomp
 		end	
 
-	print "Please enter a number between 1-12 for the month of your cohort (1-January, etc)\n"
-	# cohortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-	cohort = gets.gsub("\n", "")
-	# cohort = cohortMonth[cohort.to_i - 1]
+	print "Please enter a number between 1-12 for the month of your cohort (1-January, etc)\n"	# cohortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+	cohort = gets.gsub("\n", "")	# cohort = cohortMonth[cohort.to_i - 1]
 
 	if cohort.empty?
 		cohort = "6"
@@ -72,6 +70,7 @@ def print_menu
 		puts "1. Input the students"
 		puts "2. Show the students"
 		puts "3. Save the list to students.csv"
+		puts "4. Load the list from students.csv"
 		puts "9. Exit" # 9 because we'll be adding more items
 		puts "---------------------\n"
 end
@@ -90,6 +89,8 @@ def process(selection)
 			show_students
 		when "3"
 			save_students
+		when "4"
+			load_students
 		when "9"
 			exit # this will cause the program to terminate
 	else
@@ -102,11 +103,16 @@ def save_students
 	file = File.open("students.csv", "w")
 	# iterate over the array of students
 	@students.each do |student|
-		# student_data = [student[:name], student[:cohort]]
-		# csv_line = student_data.join(",")
-		# file.puts csv_line
-		file.puts [student[:name], student[:age], student[:cohort]].join(", ")
+		file.puts [student[:name], student[:age], student[:cohort]].join(",")
+	end
+	file.close
+end
 
+def load_students
+	file = File.open("students.csv", "r")
+	file.readlines.each do |line|
+		name, age, cohort = line.chomp.split(',')
+			@students << {:name => name, :age => age, :cohort => cohort.to_sym}
 	end
 	file.close
 end
