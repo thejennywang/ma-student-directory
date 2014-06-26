@@ -1,6 +1,6 @@
 def print_header
-	print "The students of my cohort at Makers Academy\n"
-	print "-----------------\n"
+	puts "The students of my cohort at Makers Academy"
+	puts "-----------------"
 end
 
 def display_students
@@ -22,43 +22,43 @@ def print_footer
 end
 
 def input_students
-	print "Please enter your name\n"
-	#get the first name
-	name = gets.gsub("\n", "")
+	puts "Please enter your name"
+	# get the first name
+	name = gets.chomp
 	# while the name is not empty, repeat this code
 	while !name.empty? do
-		print "Please enter your age\n"
-		age = gets.gsub("\n", "")
+		puts "Please enter your age"
+		age = gets.chomp
 		while ( age.to_i == 0 || age.to_i < 0 )
 			puts "Please enter a numeric value for your age"
 			age = gets.chomp
 		end	
 
-	print "Please enter a number between 1-12 for the month of your cohort (1-January, etc)\n"	# cohortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-	cohort = gets.gsub("\n", "")	# cohort = cohortMonth[cohort.to_i - 1]
-
+	puts "Please enter a number between 1-12 for the month of your cohort (1-January, etc)"
+	# get cohort month, if nothing entered default to 6 (june)
+	cohort = gets.chomp
 	if cohort.empty?
-		cohort = "6"
-	end	
+		cohort = "6" 
+	end
 
 	cohort = (Time.new(Time.now.year, cohort.to_i).strftime "%B").to_sym
 
 	puts "Your input is #{name}, #{age}, #{cohort}. Are you sure? (y/n)"
-	confirmation = gets.gsub("\n", "")
+	confirmation = gets.chomp
 	if confirmation == "y"
 
 		#add the student hash to the array
 		@students << {:name => name, :age => age, :cohort => cohort}
 		
 		
-		print "Now we have #{@students.length} student#{@students.length > 1 ? "s" : ""}\n" 
+		puts "Now we have #{@students.length} student#{@students.length > 1 ? "s" : ""}" 
 		
 		#gets another name from the user
-		print "Please enter another name OR press return for Menu\n"
-		name = gets.gsub("\n", "")
+		puts "Please enter another name OR press return for Menu"
+		name = gets.chomp
 	elsif confirmation == "n"
 		puts "Please re-enter your name"
-		name = gets.gsub("\n", "")
+		name = gets.chomp
 	end
 end
 	#return the array of students
