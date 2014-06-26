@@ -22,11 +22,11 @@ def input_students
 	#create an empty array
 	students = []
 	#get the first name
-	name = gets.chomp
+	name = gets.gsub("\n", "")
 	# while the name is not empty, repeat this code
 	while !name.empty? do
 		print "Please enter your age\n"
-		age = gets.chomp
+		age = gets.gsub("\n", "")
 		while ( age.to_i == 0 || age.to_i < 0 )
 			puts "Please enter a numeric value for your age"
 			age = gets.chomp
@@ -34,7 +34,7 @@ def input_students
 
 	print "Please enter a number between 1-12 for the month of your cohort (1-January, etc)\n"
 	# cohortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-	cohort = gets.chomp
+	cohort = gets.gsub("\n", "")
 	# cohort = cohortMonth[cohort.to_i - 1]
 
 	if cohort.empty?
@@ -44,7 +44,7 @@ def input_students
 	cohort = (Time.new(Time.now.year, cohort.to_i).strftime "%B").to_sym
 
 	puts "Your input is #{name}, #{age}, #{cohort}. Are you sure? (y/n)"
-	confirmation = gets.chomp
+	confirmation = gets.gsub("\n", "")
 	if confirmation == "y"
 
 		#add the student hash to the array
@@ -55,10 +55,10 @@ def input_students
 		
 		#gets another name from the user
 		print "Please enter your name OR press return to exit\n"
-		name = gets.chomp
+		name = gets.gsub("\n", "")
 	elsif confirmation == "n"
 		puts "Please re-enter your name"
-		name = gets.chomp
+		name = gets.gsub("\n", "")
 	end
 end
 	#return the array of students
