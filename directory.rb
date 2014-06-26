@@ -68,11 +68,11 @@ end
 end
 
 def print_menu
-		puts "--------MENU---------"
+		puts "\n--------MENU---------"
 		puts "1. Input the students"
 		puts "2. Show the students"
 		puts "9. Exit" # 9 because we'll be adding more items
-		puts "---------------------"
+		puts "---------------------\n"
 end
 
 def show_students
