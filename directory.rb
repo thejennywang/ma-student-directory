@@ -47,7 +47,7 @@ def input_students
 
 	cohort = (Time.new(Time.now.year, cohort.to_i).strftime "%B").to_sym
 
-	puts "Your input is #{name}, #{age}, #{cohort}, are you sure?"
+	puts "Your input is #{name}, #{age}, #{cohort}. Are you sure? (y/n)"
 	confirmation = gets.chomp
 	if confirmation == "y"
 
