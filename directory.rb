@@ -14,7 +14,11 @@ def display(students)
 end
 
 def print_footer(names)
-		print "Overall, we have #{names.length} great student#{names.length > 1 ? "s" : ""}\n" 
+  if !names.empty? 
+    puts "Overall, we have #{names.length} great student#{names.length > 1 ? "s" : ""}\n"
+  else
+    puts "No students in your cohort :("
+  end
 end
 
 def input_students

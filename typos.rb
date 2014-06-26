@@ -6,11 +6,15 @@ end
 def display(students)
   students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
+   end
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.length} great students"
+  if !names.empty? 
+    puts "Overall, we have #{names.length} great students"
+  else
+    puts "No students in your cohort :("
+  end
 end
 
 def input_students
