@@ -1,21 +1,24 @@
+#by Jenny, Jeremy, Peter, Mihai, Steve
+
 def print_header
 	puts "The students of my cohort at Makers Academy"
 	puts "-----------------"
 end
 
-def display_students
-	cohort = @students.map { |student| student[:cohort] }.uniq 
-	cohort.each do |month|
-		puts "The students in the #{month.to_s} cohort are:" 
-			@students.each do |student|
-				puts "#{student[:name]}, #{student[:age]}, #{student[:cohort]}" if student[:cohort] == month
-			end
+def display_students #Steve helped a lot
+	@students.map { |student| student[:cohort] }.uniq.each do |month|
+		puts "The students in the #{month} cohort are:" 
+		@students.each { |student| puts student_info(student[:name], student[:age],student[:cohort]) if student[:cohort] == month}
 	end
 end
 
+	def student_info(name, age, cohort) #steve
+		 "#{name}, #{age}, #{cohort}"
+	end
+
 def print_footer
   if !@students.empty? 
-    puts "Overall, we have #{@students.length} great student#{@students.length > 1 ? "s" : ""}\n"
+  	show_student_amount("Overall, we have") 
   else
     puts "No students in your cohort :("
   end
@@ -30,11 +33,10 @@ end
 def input_age
 	puts "Please enter your age"
 	age = gets.chomp
-	while ( age.to_i == 0 || age.to_i < 0 )
+	until ( age.to_i > 0 )
 		puts "Please enter a numeric value for your age"
 		age = gets.chomp
 	end
-
 	age
 end
 
@@ -42,24 +44,23 @@ def input_cohort
 	puts "Please enter a number between 1-12 for the month of your cohort (1-January, etc)"
 	# get cohort month, if nothing entered default to 6 (june)
 	cohort = gets.chomp
-	if cohort.empty?
-		cohort = "6" 
-	end
+	cohort = "6" if cohort.empty?
 
 	cohort = (Time.new(Time.now.year, cohort.to_i).strftime "%B").to_sym
 end
 
+def show_student_amount(context) #steve
+	puts "#{context} #{@students.length} student#{@students.length > 1 ? "s" : ""}" 
+end
+
 def check_input(name, age, cohort)
-	puts "Your input is #{name}, #{age}, #{cohort}. Are you sure? (y/n)"
+	puts "Your input is #{student_info(name, age, cohort)}. Are you sure? (y/n)"
 	confirmation = gets.chomp
 	
-	if confirmation == "y"
+	if confirmation.downcase == "y"
 		#add the student hash to the array
 		@students << {:name => name, :age => age, :cohort => cohort}
-		puts "Now we have #{@students.length} student#{@students.length > 1 ? "s" : ""}" 
-	elsif confirmation == "n"
-		puts "Please re-enter your name"
-		name = gets.chomp
+		show_student_amount("Now we have")
 	end
 end
 
