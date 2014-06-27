@@ -1,5 +1,3 @@
-#by Jenny, Jeremy, Peter, Mihai, Steve
-
 def print_header
 	puts "The students of my cohort at Makers Academy"
 	puts "-----------------"
