@@ -20,14 +20,4 @@ Tripled up with Jeremy (@foxjerem) and Peter (@petermccarthy49) today. We added 
 
 Day 4 - directory.rb
 ---------------------
-We didn't work on our student directory today to focus on our Friday Challenge on the command line.
-
-
-Day 5 - directory5/
----------------------
-Threesome with Alex and Iona today to re-do the student directory project TDD'ing it! We started with the menu and made a nice map of how the whole program will run. We also employed some IO objects and a whole bucketload of rspec basics we learned today.
-
-
-Day 6 - directory 6/
----------------------
-Paired with the lovely Zoe (@zoeabryant) today and we started to TDD our student directory from scratch. She taught me many fun sublime shortcuts I didn't know about before. We worked out how to test inputing and printing multiple students, and have students saved in a .csv file. 
+We didn't work on our student directory today to focus on our Friday Challenge on the command line. We will be TDD'ing next week, so this will be the last version of our student directory without tests.
