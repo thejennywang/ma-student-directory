@@ -3,10 +3,11 @@ def print_header
 	puts "-----------------"
 end
 
-def display_students #Steve helped a lot
-	@students.map { |student| student[:cohort] }.uniq.each do |month|
-		puts "The students in the #{month} cohort are:" 
-		@students.each { |student| puts student_info(student[:name], student[:age],student[:cohort]) if student[:cohort] == month}
+def display_students
+	months = @students.map { |student| student[:cohort] }.uniq 
+	months.each do |month|
+		puts "The students in the #{month.to_s} cohort are:" 
+		@students.each { |student| puts "#{student[:name]}, #{student[:age]}, #{student[:cohort]}" if student[:cohort] == month }
 	end
 end
 
@@ -63,7 +64,11 @@ def check_input(name, age, cohort)
 end
 
 def input_students
-	name = input_name
+	get_students_info(name = input_name)
+	@students
+end
+
+def get_students_info(name)
 	while !name.empty? do
 		age = input_age
 		cohort = input_cohort
@@ -71,7 +76,6 @@ def input_students
 		puts "Please enter another name OR press return for Menu"
 		name = gets.chomp
 	end
-	@students
 end
 
 def print_menu
