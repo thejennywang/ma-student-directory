@@ -24,4 +24,4 @@ Alex and Iona
 
 Day 6 - directory 6/
 ---------------------
-Paired with the lovely Zoe (@zoeabryant) today and we started to TDD our student directory from scratch. She taught me some fun sublime shortcuts!
+Paired with the lovely Zoe (@zoeabryant) today and we started to TDD our student directory from scratch. She taught me some fun sublime shortcuts !
